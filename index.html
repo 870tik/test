@@ -83,6 +83,8 @@
     <body>
         <div class="normal"></div>
         <div class="normal"></div>
+        <div class="normal"></div>
+        <div class="normal"></div>
         <div id="carousel" class="carousel">
             <li class="carouselItem"></li>
             <li class="carouselItem"></li>
@@ -95,17 +97,24 @@
         <div class="normal"></div>
     </body>
     <script>
-        var clientRect = document.getElementById("carousel").getBoundingClientRect() ;
+        var carousel = document.getElementById("carousel");
+        var clientRect = carousel.getBoundingClientRect() ;
         window.addEventListener('DOMContentLoaded', function(){
 
             window.addEventListener('scroll', function(){
-                console.log(window.scrollY);
+                var scrollY = window.scrollY + window.innerHeight
+                console.log(scrollY);
                 console.log(clientRect.top)
-                if(window.scrollY > clientRect.top) {
-                    console.log("超えました");
+                console.log(carousel.scrollWidth)
+                if(scrollY > clientRect.top && scrollY - clientRect.top > carousel.scrollWidth) {
+                    carousel.scrollLeft = scrollY - clientRect.top
+                    window.scrollTo(0, scrollY)
                 }
             });
 
+            function mouseWheel(obj) {
+                obj.scroll
+            }
         });
     </script>
 </html>
