@@ -27,18 +27,85 @@
         <meta name="twitter:image:src" content="URL" />
 
         <!-- css -->
-        ...
         <link rel="stylesheet" href="style.css" />
 
         <!-- js -->
-        ...
         <script src="main.js" defer></script>
 
         <!-- 場合によって必要 -->
         <!-- <meta name="robots" content="noindex,nofollow"> -->
     </head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
 
+        .normal {
+            width: calc(100% - 32px);
+            height: 400px;
+            margin: 32px auto;
+            background-color: gray;
+        }
+
+        .carousel {
+            width: 100%;
+            margin: 32px auto;
+            display: flex;
+            gap: 0 16px;
+            align-items: center;
+            overflow-x: scroll;
+
+        }
+
+        .carouselItem {
+            width: 300px;
+            height: 200px;
+            background-color: gray;
+            list-style: none;
+            display: block;
+            flex: none;
+        }
+
+        .carouselItem:first-child {
+            margin-left: 16px;
+        }
+
+        .carouselItem:last-child {
+            margin-right: 16px;
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+    </style>
     <body>
-        
+        <div class="normal"></div>
+        <div class="normal"></div>
+        <div id="carousel" class="carousel">
+            <li class="carouselItem"></li>
+            <li class="carouselItem"></li>
+            <li class="carouselItem"></li>
+            <li class="carouselItem"></li>
+            <li class="carouselItem"></li>
+            <li class="carouselItem"></li>
+        </div>
+        <div class="normal"></div>
+        <div class="normal"></div>
     </body>
+    <script>
+        var clientRect = document.getElementById("carousel").getBoundingClientRect() ;
+        window.addEventListener('DOMContentLoaded', function(){
+
+            window.addEventListener('scroll', function(){
+                console.log(window.scrollY);
+                console.log(clientRect.top)
+                if(window.scrollY > clientRect.top) {
+                    console.log("超えました");
+                }
+            });
+
+        });
+    </script>
 </html>
