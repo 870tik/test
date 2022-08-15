@@ -98,23 +98,24 @@
     </body>
     <script>
         var carousel = document.getElementById("carousel");
-        var clientRect = carousel.getBoundingClientRect() ;
+        var clientRect = carousel.getBoundingClientRect();
+        var posY;
         window.addEventListener('DOMContentLoaded', function(){
 
-            window.addEventListener('scroll', function(){
-                var scrollY = window.scrollY + window.innerHeight
-                console.log(scrollY);
-                console.log(clientRect.top)
-                console.log(carousel.scrollWidth)
-                if(scrollY > clientRect.top && scrollY - clientRect.top > carousel.scrollWidth) {
-                    carousel.scrollLeft = scrollY - clientRect.top
-                    window.scrollTo(0, scrollY)
-                }
-            });
-
-            function mouseWheel(obj) {
-                obj.scroll
-            }
+            // window.addEventListener('scroll', function(){
+            //     var scrollY = window.scrollY + window.innerHeight
+            //     console.log(scrollY);
+            //     console.log(clientRect.bottom)
+            //     console.log(carousel.scrollWidth)
+            //     console.log(clientRect.bottom + carousel.scrollWidth)
+            //     if(scrollY > clientRect.bottom && scrollY < clientRect.bottom + carousel.scrollWidth) {
+            //         carousel.scrollLeft = scrollY - clientRect.bottom
+            //     }
+            // });
+        
+            window.addEventListener("mousewheel", e => {
+                console.log("mousewheel");
+            })
         });
     </script>
 </html>
