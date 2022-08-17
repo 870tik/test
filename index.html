@@ -99,7 +99,7 @@
     <script>
         var carousel = document.getElementById("carousel");
         var clientRect = carousel.getBoundingClientRect();
-        var posY;
+        var posY = 0;
         window.addEventListener('DOMContentLoaded', function(){
 
             // window.addEventListener('scroll', function(){
@@ -113,9 +113,24 @@
             //     }
             // });
         
-            window.addEventListener("mousewheel", e => {
-                console.log("mousewheel");
-            })
+            window.addEventListener("wheel", wheel);
+
+            window.addEventListener("touchmove",touchmove);
         });
+
+        function wheel(event) {
+            event.preventDefault();
+            console.log(event.deltaY);
+            if(posY > clientRect.bottom && posY < clientRect.bottom + carousel.scrollWidth) {
+                carousel.scrollLeft = event.deltaY + posY;
+            }
+            posY = event.deltaY + posY;
+            console.log(posY);
+        }
+
+        function touchmove(event) {
+            event.preventDefault();
+            console.log(event.pageY);
+        }
     </script>
 </html>
